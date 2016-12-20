@@ -89,7 +89,7 @@ then
 	curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
 
     echo -e "\n"
-    echo "[Every boss, The ${appFullName}-${configuration} has been uploaded successfully!]"
+    echo "[Every boss, The ${appFullName} has been uploaded successfully!]"
 else
     echo -e "\n"
     echo "[Generate $ipaPath fail!]"
