@@ -37,12 +37,7 @@ pgyerApiKey=""
 fi
 
 outputPath="/Users/${user}/Desktop/${configuration}-ipa"
-
-if [[ -f ${outputPath} ]]; then
-    echo ""
-else
-    mkdir ${outputPath}
-fi
+mkdir ${outputPath}
 
 #----------1.default config
 #timer
