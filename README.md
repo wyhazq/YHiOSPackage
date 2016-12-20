@@ -64,8 +64,8 @@ ipaName="${projectName}-${configuration}-${now}.ipa"
 ipaPath="$outputPath/$ipaName"
 appFullName="${projectName}-${configuration}"
 
-
-echo "\n[archiving ${configuration}...]"
+echo -e "\n"
+echo "[archiving ${configuration}...]"
 
 #----------2.pod update
 #pod update --verbose --no-repo-update
@@ -80,16 +80,19 @@ fastlane gym --workspace ${workspacePath} --scheme ${scheme} --clean --configura
 #----------4.upload to pgyer
 if [ -f $ipaPath ];
 then
-    echo "\n[Generate $ipaPath successfully!]"
+    echo -e "\n"
+    echo "[Generate $ipaPath successfully!]"
     
     rm -rf ${archivePath}
-
+    echo -e "\n"
     echo "[upload to pgyer]"
 	curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
 
-    echo "\n[Every boss, The ${appFullName}-${configuration} has been uploaded successfully!]"
+    echo -e "\n"
+    echo "[Every boss, The ${appFullName}-${configuration} has been uploaded successfully!]"
 else
-    echo "\n[Generate $ipaPath fail!]"
+    echo -e "\n"
+    echo "[Generate $ipaPath fail!]"
     exit 1
 fi
 
@@ -98,6 +101,7 @@ fi
 
 
 #----------5.end
+echo -e "\n"
 echo "[Finished, total time: ${SECONDS}s]"
 ```
 

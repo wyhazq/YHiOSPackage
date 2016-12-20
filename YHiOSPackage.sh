@@ -5,7 +5,7 @@
 #1.install xcode-select:xcode-select --install
 #2.remove & change gem source(if your gem source is not this)(目前国内的gem source好像安装不了fastlane2.0,可安装完后再改回来): remove: gem source -r XXX   add: gem source -a https://rubygems.org/
 #3.install fastlane2.0:sudo gem install fastlane
-#4.push the .sh in the path of project 
+#4.push the .sh in the path of project
 #5.config the key:user, projectName, configuration, method, pgyerUKey, pgyerApiKey
 #6.execute .sh
 
@@ -13,8 +13,8 @@
 
 
 #----------0.config
-user=""                                             #your mac's userName
-projectName=""                                      #your project name
+user=""                                           #your mac's userName
+projectName=""									  #your project name
 
 read -n 1 -p "[archive SIT(0) OR UAT(1)? input the number 0 || 1] : " mode
 
@@ -51,8 +51,8 @@ ipaName="${projectName}-${configuration}-${now}.ipa"
 ipaPath="$outputPath/$ipaName"
 appFullName="${projectName}-${configuration}"
 
-
-echo "\n[archiving ${configuration}...]"
+echo -e "\n"
+echo "[archiving ${configuration}...]"
 
 #----------2.pod update
 #pod update --verbose --no-repo-update
@@ -67,17 +67,20 @@ fastlane gym --workspace ${workspacePath} --scheme ${scheme} --clean --configura
 #----------4.upload to pgyer
 if [ -f $ipaPath ];
 then
-    echo "\n[Generate $ipaPath successfully!]"
-    
-    rm -rf ${archivePath}
+echo -e "\n"
+echo "[Generate $ipaPath successfully!]"
 
-    echo "[upload to pgyer]"
-	curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
+rm -rf ${archivePath}
+echo -e "\n"
+echo "[upload to pgyer]"
+curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
 
-    echo "\n[Every boss, The ${appFullName}-${configuration} has been uploaded successfully!]"
+echo -e "\n"
+echo "[Every boss, The ${appFullName}-${configuration} has been uploaded successfully!]"
 else
-    echo "\n[Generate $ipaPath fail!]"
-    exit 1
+echo -e "\n"
+echo "[Generate $ipaPath fail!]"
+exit 1
 fi
 
 
@@ -85,4 +88,5 @@ fi
 
 
 #----------5.end
+echo -e "\n"
 echo "[Finished, total time: ${SECONDS}s]"
