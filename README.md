@@ -13,7 +13,7 @@
 #6.execute ./YHiOSPackage.sh
 
 #----------0.config
-projectName=`echo $PWD | rev | awk -F \/ '{print $1}' | rev`
+projectName=`echo $PWD | rev | awk -F \/ '{print $1}' | rev`#write by Boss Chou
 
 read -n 1 -p "[archive SIT(0) OR UAT(1) OR Release(2)? input the number 0 | 1 | 2] : " mode
 
