@@ -10,7 +10,9 @@
 #6.execute ./YHiOSPackage.sh
 
 #----------0.config
-projectName=`echo $PWD | rev | awk -F \/ '{print $1}' | rev`#write by Boss Chou
+
+#write by Boss Chou
+projectName=${PWD##*/}
 
 read -n 1 -p "[archive SIT(0) OR UAT(1) OR Release(2)? input the number 0 | 1 | 2] : " mode
 
@@ -91,12 +93,10 @@ echo "[upload to SVN]"
 svn add ${outputPath}
 svn commit -m "commit" ${outputPath}
 
-echo "[upload to pgyer]"
-curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
-else
-echo "[upload to pgyer]"
-curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
 fi
+
+echo "[upload to pgyer]"
+curl -F "file=@${ipaPath}" -F "uKey=${pgyerUKey}" -F "_api_key=${pgyerApiKey}" http://www.pgyer.com/apiv1/app/upload --verbose
 
 
 echo -e "\n"
