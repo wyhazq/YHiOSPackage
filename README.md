@@ -4,10 +4,13 @@
 #!/bin/bash
 
 #how to use:
-#0.multiple configuration:http://www.jianshu.com/p/83b6e781eb51,https://github.com/appfoundry/ios-multi-env-configuration , or you just can use Debug || Release
+#0.multiple configuration:
+http://www.jianshu.com/p/83b6e781eb51
+https://github.com/appfoundry/ios-multi-env-configuration,
+or you just can use Debug || Release
 #1.install xcode-select:xcode-select --install
 #2.remove & change gem source(if your gem source is not this)(目前国内的gem source好像安装不了fastlane2.0,可安装完后再改回来): remove: gem source -r XXX   add: gem source -a https://rubygems.org/
-#3.install fastlane2.0:sudo gem install fastlane
+#3.install fastlane2.0:sudo gem install fastlane  (last version is 2.58.0 +)
 #4.push the .sh in the path of project
 #5.config the key:configuration, method, pgyerUKey, pgyerApiKey
 #6.execute ./YHiOSPackage.sh
