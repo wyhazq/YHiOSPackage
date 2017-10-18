@@ -14,8 +14,8 @@ or you just can use Debug || Release
 
 #----------0.config
 
-#write by Boss Chou
-projectName=${PWD##*/}
+projectName=`find *.xcodeproj -maxdepth 0`
+projectName=${projectName%.*}
 
 read -n 1 -p "[archive SIT(0) OR UAT(1) OR Release(2)? input the number 0 | 1 | 2] : " mode
 
