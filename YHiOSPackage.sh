@@ -81,11 +81,7 @@ projectName=${projectName%.*}
 SECONDS=0
 now=$(date +"%Y%m%d%H%M%S")
 
-#if no xcworkspace then select xcodeproj
 projectPath="$(pwd)/${projectName}.xcworkspace"
-if [! -d ${projectPath} ]; then
-projectPath="$(pwd)/${projectName}.xcodeproj"
-fi
 
 scheme="${projectName}-${configuration}"
 if [ ${configuration} = "Debug" -o ${configuration} = "Release" ]; then
@@ -118,6 +114,7 @@ echo "[archiving xcworkspace...]"
 fastlane gym --workspace ${projectPath} --scheme ${scheme} --clean --configuration ${configuration} --archive_path ${archivePath} --export_method ${method} --output_directory ${outputPath} --output_name ${ipaName}
 else
 echo "[archiving xcodeproj...]"
+projectPath="$(pwd)/${projectName}.xcodeproj"
 fastlane gym --project ${projectPath} --scheme ${scheme} --clean --configuration ${configuration} --archive_path ${archivePath} --export_method ${method} --output_directory ${outputPath} --output_name ${ipaName}
 fi
 
