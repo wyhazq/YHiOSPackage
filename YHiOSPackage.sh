@@ -39,7 +39,7 @@ methods=(
 "development"
 "development"
 "enterprise"
-"enterprise"
+"app-store"
 )
 
 #pgyer's uKey
