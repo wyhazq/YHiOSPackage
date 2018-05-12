@@ -34,6 +34,8 @@ configurations=(
 "Debug"
 "SIT"
 "UAT"
+"STG"
+"Ad-Hoc"
 "Release"
 )
 
@@ -42,11 +44,15 @@ methods=(
 "development"
 "development"
 "enterprise"
+"development"
+"ad-hoc"
 "app-store"
 )
 
 #pgyer's uKey
 pgyerUKeys=(
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
 "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
@@ -59,10 +65,12 @@ pgyerApiKeys=(
 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
 )
 
-#read input:4种环境，分别对应开发，内部测试，用户测试和生产，足够用了，中间两种需要自己去建，最上面有链接
-read -n 1 -p "[archive Debug(0) SIT(1) OR UAT(2) OR Release(3)? input the number 0 | 1 | 2 | 3] : " mode
+#read input:6种环境，分别对应开发，内部测试，用户测试，准生产、Ad-Hoc和生产，足够用了，中间几种需要自己去建，最上面有链接
+read -n 1 -p "[archive Debug(0) SIT(1) UAT(2)  STG(3) Ad-Hoc(4) Release(5)? input the number (0~5)] : " mode
 
 length=${#configurations[@]}
 if [${mode} -gt length]; then
@@ -90,15 +98,17 @@ scheme="${projectName}-${configuration}"
 if [ ${configuration} = "Debug" -o ${configuration} = "Release" ]; then
 scheme="${projectName}"
 fi
-outputPath="/Users/${USER}/Desktop/${projectName}-${configuration}-ipa"
+outputPath="/Users/${USER}/Desktop/${projectName}/${projectName}-${configuration}-ipa"
 ipaName="${projectName}-${configuration}-${now}.ipa"
 
 #get CFBundleShortVersionString
 if [ ${configuration} = "Release" ]; then
-projectContentPath="./$projectName"
-plistPath=`find $projectContentPath -name "Info.plist"`
-appVersion=`/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" $plistPath`
-outputPath="/Users/${USER}/Desktop/${projectName}-${configuration}-ipa/${appVersion}"
+projectContentPath="./${projectName}"
+plistPath=`find ${projectContentPath} -name "Info.plist"`
+#fix bug: mutable info.plist
+plistPath=`grep "APPL" -l ${plistPath}`
+appVersion=`/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" ${plistPath}`
+outputPath="/Users/${USER}/Desktop/${projectName}/${projectName}-${configuration}-ipa/${appVersion}"
 ipaName="${projectName}.ipa"
 fi
 
