@@ -109,6 +109,7 @@ plistPath=`find ${projectContentPath} -name "Info.plist"`
 plistPath=`grep "APPL" -l ${plistPath}`
 appVersion=`/usr/libexec/PlistBuddy -c "Print :CFBundleShortVersionString" ${plistPath}`
 outputPath="/Users/${USER}/Desktop/${projectName}/${projectName}-${configuration}-ipa/${appVersion}"
+rm -rf ${outputPath}
 ipaName="${projectName}.ipa"
 fi
 
