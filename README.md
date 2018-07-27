@@ -9,14 +9,18 @@
 #  https://github.com/appfoundry/ios-multi-env-configuration,
 #  Otherwise you can only pack Debug || Release configuration
 
-#1.install xcode-select:xcode-select --install
+#1.install xcode-select:
+#$ xcode-select --install
 
 #2.remove & change gem source(if your gem source is not this)
 #  (目前国内的gem source好像安装不了fastlane2.0以上,可安装完后再改回来，需要fq):
-#  remove: gem source -r XXX
-#  add: gem source -a https://rubygems.org/
+#  remove: 
+#$ gem source -r XXX
+#  add: 
+#$ gem source -a https://rubygems.org/
 
-#3.install the latest version fastlane: sudo gem install fastlane
+#3.install the latest version fastlane: 
+#$ sudo gem install fastlane
 
 #4.push the .sh in the path of project
 
@@ -24,9 +28,11 @@
 #  You just have to configure these.
 #  你只需要配置这4个必须的参数，其他的全都帮你搞定了，这或许是GitHub上配置最少，最高复用性的iOS打包脚本了。
 
-#6.permissions: chmod +x ./YHiOSPackage.sh
+#6.permissions: 
+#$ chmod +x ./YHiOSPackage.sh
 
-#7.execute: ./YHiOPackage.sh
+#7.execute: 
+#$ ./YHiOPackage.sh
 
 #----------0.config
 
